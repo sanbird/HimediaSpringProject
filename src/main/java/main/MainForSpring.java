@@ -5,7 +5,8 @@ import java.util.Scanner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import config.AppCtx;
+import config.AppConf1;
+import config.AppConf2;
 import spring.ChangePasswordService;
 import spring.DuplicateMemberException;
 import spring.MemberInfoPrinter;
@@ -13,6 +14,7 @@ import spring.MemberListPrinter;
 import spring.MemberNotFoundException;
 import spring.MemberRegisterService;
 import spring.RegisterRequest;
+import spring.VersionPrinter;
 import spring.WrongIdPasswordException;
 
 public class MainForSpring {
@@ -22,7 +24,7 @@ public class MainForSpring {
 
 	public static void main(String[] args) {
 		
-		ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+		ctx = new AnnotationConfigApplicationContext(AppConf1.class, AppConf2.class);
 		
 		Scanner scan = new Scanner(System.in);
 		while(true) {
@@ -49,12 +51,21 @@ public class MainForSpring {
 				processInfoCommand(command.split(" "));
 				continue;
 			}
+			else if (command.startsWith("version")) {
+				processVersionCommand();
+				continue;
+			}
 			printHelp();
 			
 		}
 
 	}
 	
+	private static void processVersionCommand() {
+		VersionPrinter versionPrinter = ctx.getBean("versionPrinter", VersionPrinter.class);
+		versionPrinter.print();
+	}
+
 	private static void processInfoCommand(String[] args) {
 		if ( args.length != 2 ) {
 			printHelp();
@@ -122,6 +133,7 @@ public class MainForSpring {
 		System.out.println(">> change 이메일 현재비번 변경비번");
 		System.out.println(">> list");
 		System.out.println(">> info 이메일");
+		System.out.println(">> version");
 		System.out.println();
 		
 	}
