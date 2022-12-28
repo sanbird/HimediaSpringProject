@@ -50,7 +50,7 @@ public class AppCtx {
 	
 	@Bean
 	public MemberInfoPrinter infoPrinter() {
-		return new  MemberInfoPrinter();		
+		return new MemberInfoPrinter();		
 	}
 	
 	@Bean

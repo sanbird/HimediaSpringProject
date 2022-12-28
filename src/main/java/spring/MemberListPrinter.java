@@ -20,8 +20,7 @@ public class MemberListPrinter {
 		this.memberDao = memberDao;
 	}	
 	@Autowired
-	@Qualifier("summaryPrinter")  // 한정값이 printer인 Bean을 의존 주입 후보로 사용
-	                       // 자동 주입 대상으로 memberPrinter1을 사용
+	@Qualifier("summaryPrinter")  
 	public void setPrinter(MemberPrinter printer) {
 		this.printer = printer;
 	}
