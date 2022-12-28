@@ -28,7 +28,6 @@ public class AppConf2 {
 	@Bean
 	public ChangePasswordService changePwdSvc() {
 		ChangePasswordService pwdSvc = new ChangePasswordService();
-		pwdSvc.setMemberDao(memberDao);
 		return pwdSvc;
 	}
 	
